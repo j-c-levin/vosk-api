@@ -11,8 +11,8 @@ new_dict_file="/content/new_dictionary.txt"
 mkdir -p $dst_dir
 cat $src_dir/librispeech-lexicon.txt | sed 's:[012]::g' > $dst_dir/lexicon_raw_nosil.txt
 
-# Append the new dictionary entries to lexicon_raw_nosil.txt
-cat $new_dict_file >> $dst_dir/lexicon_raw_nosil.txt
+# Capitalize and append the new dictionary entries to lexicon_raw_nosil.txt
+cat $new_dict_file | tr '[:lower:]' '[:upper:]' >> $dst_dir/lexicon_raw_nosil.txt
 
 (echo SIL; echo SPN;) > $dst_dir/silence_phones.txt
 echo SIL > $dst_dir/optional_silence.txt
